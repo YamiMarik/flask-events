@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <form method="POST">
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <h5>Add New Event</h5>
+                </div>
+                {{eventform.hidden_tag()}}
+                <div class="form-group">
+                    {{eventform.name.label(class="form-control-label")}}
+                    {{eventform.name(class="form-control form-control-lg")}}
+                </div>
+                <div class="form-group">
+                    {{eventform.date.label(class="form-control-label")}}
+                    {{eventform.date(class="form-control form-control-lg")}}
+                </div>
+                <div class="form-group">
+                    {{eventform.start.label(class="form-control-label")}}
+                    {{eventform.start(class="form-control form-control-lg")}}
+                </div>
+                <div class="form-group">
+                    {{eventform.end.label(class="form-control-label")}}
+                    {{eventform.end(class="form-control form-control-lg")}}
+                </div>
+                <br>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    {{eventform.submit(class="btn btn-success")}}
+                </div>
+            </form>
+        </div>
+        <div class="col-6">
+            {% for event in event_list %}
+            <div class="jumbotron">
+                <h4>Event: {{event.event_name|capitalize}} ID#{{event.event_id}}</h4>
+                <h5>AT {{event.event_date.day}}-{{event.event_date.month}}-{{event.event_date.year}}</h5>
+                <h6>From {{event.event_start.hour}}:{{event.event_start.minute}} To
+                    {{event.event_start.hour}}:{{event.event_start.minute}}</h6>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
